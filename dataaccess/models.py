@@ -7,3 +7,4 @@ class User(models.Model):
     profile_pic = models.URLField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    owner = models.ForeignKey('auth.User', related_name="users", blank=True, null=True)

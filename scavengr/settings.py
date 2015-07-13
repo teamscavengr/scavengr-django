@@ -40,7 +40,28 @@ INSTALLED_APPS = (
     'rest_framework',
     'dataaccess',
     'users',
+    'social.apps.django_app.default',
+    'oauth2_provider',
 )
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+    )
+}
+
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope'}
+}
+
+SOCIAL_AUTH_FACEBOOK_KEY = 458266151007497
+SOCIAL_AUTH_FACEBOOK_SECRET = 'b06583e7431a80aee65453d7e2ba47a9'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
